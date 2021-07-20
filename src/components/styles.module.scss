@@ -1,9 +1,9 @@
 .button {
   position: relative;
-  background: goldenrod;
+  background: var(--primary);
   height: 3rem;
   border: none;
-  font-weight: bold;
+  font-weight: var(--font-bold);
   font-size: 1rem;
   letter-spacing: 1.5px;
   font-family: Raleway;
@@ -15,19 +15,19 @@
     right: 2px;
     bottom: 2px;
     background: transparent;
-    border: 2px solid black;
+    border: 2px solid var(--black);
   }
   &:disabled {
-    background: #545454;
+    background: var(--disabled);
   }
 }
 
 .header {
-  color: goldenrod;
+  color: var(--primary);
   text-align: center;
   padding-top: 2.5rem;
   &__subheading {
-    color: white;
+    color: var(--white);
     font-size: 1.25rem;
   }
 }
@@ -52,21 +52,21 @@
     width: 1.25rem;
   }
   &__label {
-    color: white;
-    font-weight: 600;
+    color: var(--white);
+    font-weight: var(--font-semibold);
   }
   &__disabled {
-    color: #545454;
+    color: var(--disabled);
   }
 }
 
 .radio_group {
-  border-color: goldenrod;
+  border-color: var(--primary);
   padding: 1.5rem;
   padding-top: 1rem;
   &__label {
-    color: goldenrod;
-    font-weight: 800;
+    color: var(--primary);
+    font-weight: var(--font-extrabold);
     font-style: italic;
     padding: 0 0.5rem;
   }
@@ -76,8 +76,8 @@
     gap: 0.5rem;
   }
   &__disabled {
-    color: #545454;
-    border-color: #545454;
+    color: var(--disabled);
+    border-color: var(--disabled);
   }
 }
 
@@ -96,8 +96,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    background: black;
-    border: 0.25rem solid goldenrod;
+    background: var(--black);
+    border: 0.25rem solid var(--primary);
     padding: 40px;
     height: auto;
     opacity: 0;
@@ -122,13 +122,13 @@
     }
   }
   &__item {
-    color: white;
+    color: var(--white);
     display: flex;
     gap: 0.5rem;
     white-space: nowrap;
   }
   &__item_label {
-    font-weight: 800;
+    font-weight: var(--font-extrabold);
   }
   &__close {
     margin-top: 1rem;
