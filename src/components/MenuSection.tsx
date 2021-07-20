@@ -1,9 +1,13 @@
-import { useAppSelector } from "hooks/redux"
+import { useAppDispatch, useAppSelector } from "hooks/redux"
+import { setStep } from "states/menu"
 import { MenuItemGroup } from "types/menu"
 import RadioGroup from "./RadioGroup"
 import styles from "./styles.module.scss"
 
 const MenuSection = () => {
+  const dispatch = useAppDispatch()
+
+  const step = useAppSelector(state => state.menuSlice.step)
   const menuItems = useAppSelector(state => state.menuSlice.menuItems)
 
   const menuLabel = (group: MenuItemGroup) => {
@@ -37,7 +41,14 @@ const MenuSection = () => {
   return (
     <section className={styles.menu}>
       {menuItems.map((group, idx) => (
-        <RadioGroup key={idx} label={menuLabel(group)} items={group} name={menuName(group)} />
+        <RadioGroup
+          key={idx}
+          label={menuLabel(group)}
+          items={group}
+          name={menuName(group)}
+          disabled={idx > step}
+          onChange={() => dispatch(setStep(idx + 1))}
+        />
       ))}
     </section>
   )
