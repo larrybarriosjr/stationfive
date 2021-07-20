@@ -30,6 +30,10 @@ const RadioGroup = ({ index, label, items, name, disabled, onChange }: RadioGrou
     return Boolean(disabledItems.find(item => item.toString() === id))
   }
 
+  const handleSelectItem = (index: number, id: string) => {
+    return () => dispatch(setSelectedItem({ group: index, value: id }))
+  }
+
   if (!items.length) return null
 
   return (
@@ -45,7 +49,7 @@ const RadioGroup = ({ index, label, items, name, disabled, onChange }: RadioGrou
             value={item.id}
             disabled={disabled || itemDisabled(item.id)}
             checked={itemSelected(item.id)}
-            onChange={() => dispatch(setSelectedItem({ group: index, value: item.id }))}
+            onChange={handleSelectItem(index, item.id)}
           />
         ))}
       </div>

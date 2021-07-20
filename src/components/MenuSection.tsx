@@ -1,6 +1,8 @@
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { setStep } from "states/menu"
+import { toggleModalDisplay, toggleModalMounted } from "states/presentation"
 import { MenuItemGroup } from "types/menu"
+import Button from "./Button"
 import RadioGroup from "./RadioGroup"
 import styles from "./styles.module.scss"
 
@@ -36,10 +38,20 @@ const MenuSection = () => {
     }
   }
 
+  const handleSetStep = (idx: number) => {
+    return () => dispatch(setStep(idx + 1))
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    dispatch(toggleModalMounted(true))
+    dispatch(toggleModalDisplay(true))
+  }
+
   if (!menuItems.length) return null
 
   return (
-    <form className={styles.menu}>
+    <form className={styles.menu} onSubmit={handleSubmit}>
       {menuItems.map((group, idx) => (
         <RadioGroup
           key={idx}
@@ -48,12 +60,12 @@ const MenuSection = () => {
           items={group}
           name={menuName(group)}
           disabled={idx > step}
-          onChange={() => dispatch(setStep(idx + 1))}
+          onChange={handleSetStep(idx)}
         />
       ))}
-      <button type="submit" disabled={step !== 3} className={styles.menu__submit}>
+      <Button type="submit" disabled={step !== 3}>
         Submit
-      </button>
+      </Button>
     </form>
   )
 }

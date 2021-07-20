@@ -37,12 +37,15 @@ const menuSlice = createSlice({
           state.step = 0
         }
       })
+    },
+    resetMenu: () => {
+      return initialState
     }
   }
 })
 
 const { actions, reducer } = menuSlice
 
-export const { setStep, setSelectedItem } = actions
+export const { setStep, setSelectedItem, resetMenu } = actions
 export const { name: menuName } = menuSlice
 export default reducer

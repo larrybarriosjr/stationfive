@@ -1,3 +1,27 @@
+.button {
+  position: relative;
+  background: goldenrod;
+  height: 3rem;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+  font-family: Raleway;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: transparent;
+    border: 2px solid black;
+  }
+  &:disabled {
+    background: #545454;
+  }
+}
+
 .header {
   color: goldenrod;
   text-align: center;
@@ -13,29 +37,8 @@
   flex-direction: column;
   gap: 1rem;
   padding: 2.5rem 0;
-  &__submit {
-    position: relative;
-    background: goldenrod;
-    height: 3rem;
-    border: none;
-    font-weight: bold;
-    font-size: 1rem;
-    letter-spacing: 1.5px;
-    font-family: Raleway;
-    &::after {
-      content: "";
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      right: 2px;
-      bottom: 2px;
-      background: transparent;
-      border: 2px solid black;
-    }
-    &:disabled {
-      background: #545454;
-    }
-  }
+  max-width: 720px;
+  margin: auto;
 }
 
 .radio_input {
@@ -75,5 +78,59 @@
   &__disabled {
     color: #545454;
     border-color: #545454;
+  }
+}
+
+.modal {
+  &__container {
+    position: fixed;
+    top: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.75);
+  }
+  &__element {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: black;
+    border: 0.25rem solid goldenrod;
+    padding: 40px;
+    height: auto;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+    top: 120px;
+    padding: 2rem;
+    max-width: 360px;
+    &.open {
+      opacity: 1;
+      top: 90px;
+      animation: show 300ms ease-in-out;
+    }
+    @keyframes show {
+      from {
+        opacity: 0;
+        top: 120px;
+      }
+      to {
+        opacity: 1;
+        top: 90px;
+      }
+    }
+  }
+  &__item {
+    color: white;
+    display: flex;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+  &__item_label {
+    font-weight: 800;
+  }
+  &__close {
+    margin-top: 1rem;
   }
 }
