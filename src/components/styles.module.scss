@@ -1,7 +1,7 @@
 .header {
   color: goldenrod;
   text-align: center;
-  padding: 2.5rem;
+  padding-top: 2.5rem;
   &__subheading {
     color: white;
     font-size: 1.25rem;
@@ -12,6 +12,30 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 2.5rem 0;
+  &__submit {
+    position: relative;
+    background: goldenrod;
+    height: 3rem;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    font-family: Raleway;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      background: transparent;
+      border: 2px solid black;
+    }
+    &:disabled {
+      background: #545454;
+    }
+  }
 }
 
 .radio_input {

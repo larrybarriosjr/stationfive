@@ -39,7 +39,7 @@ const MenuSection = () => {
   if (!menuItems.length) return null
 
   return (
-    <section className={styles.menu}>
+    <form className={styles.menu}>
       {menuItems.map((group, idx) => (
         <RadioGroup
           key={idx}
@@ -51,7 +51,10 @@ const MenuSection = () => {
           onChange={() => dispatch(setStep(idx + 1))}
         />
       ))}
-    </section>
+      <button type="submit" disabled={step !== 3} className={styles.menu__submit}>
+        Submit
+      </button>
+    </form>
   )
 }
 

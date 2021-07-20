@@ -33,7 +33,7 @@ const menuSlice = createSlice({
           state.selectedItems = state.selectedItems.filter(item => !rules.includes(parseInt(item)))
           state.disabledItems.push(...rules)
         }
-        if (state.selectedItems.length < 2) {
+        if (state.selectedItems.length < 3) {
           state.step = 0
         }
       })
