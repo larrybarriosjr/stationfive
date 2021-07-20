@@ -2,6 +2,7 @@ import clsx from "clsx"
 import styles from "./styles.module.scss"
 
 type RadioInputProps = React.ComponentPropsWithoutRef<"input"> & {
+  id: string
   label: string
 }
 

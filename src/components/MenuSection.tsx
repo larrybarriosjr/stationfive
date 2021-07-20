@@ -43,6 +43,7 @@ const MenuSection = () => {
       {menuItems.map((group, idx) => (
         <RadioGroup
           key={idx}
+          index={idx}
           label={menuLabel(group)}
           items={group}
           name={menuName(group)}

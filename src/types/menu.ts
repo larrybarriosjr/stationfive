@@ -3,6 +3,11 @@ export type MenuItem = {
   value: string
 }
 
+export type SelectedItem = {
+  group: number
+  value: string
+}
+
 export type MenuItemGroup = MenuItem[]
 
 export type MenuInitialState = {

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import data from "api/data.json"
-import { MenuInitialState } from "types/menu"
+import { MenuInitialState, SelectedItem } from "types/menu"
 
 const initialState: MenuInitialState = {
   menuItems: data.menus,
@@ -16,12 +16,19 @@ const menuSlice = createSlice({
       if (state.step < action.payload) {
         state.step = action.payload
       }
+    },
+    setSelectedItem: (state, action: PayloadAction<SelectedItem>) => {
+      if (!state.selectedItems[action.payload.group]) {
+        state.selectedItems.push(action.payload.value)
+      } else {
+        state.selectedItems[action.payload.group] = action.payload.value
+      }
     }
   }
 })
 
 const { actions, reducer } = menuSlice
 
-export const { setStep } = actions
+export const { setStep, setSelectedItem } = actions
 export const { name: menuName } = menuSlice
 export default reducer
