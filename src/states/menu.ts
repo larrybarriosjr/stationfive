@@ -4,7 +4,9 @@ import { MenuInitialState, SelectedItem } from "types/menu"
 
 const initialState: MenuInitialState = {
   menuItems: data.menus,
+  ruleItems: data.rules,
   selectedItems: [],
+  disabledItems: [],
   step: 0
 }
 
@@ -23,6 +25,18 @@ const menuSlice = createSlice({
       } else {
         state.selectedItems[action.payload.group] = action.payload.value
       }
+
+      state.disabledItems = []
+      state.selectedItems.forEach(item => {
+        const rules = state.ruleItems[item]
+        if (rules) {
+          state.selectedItems = state.selectedItems.filter(item => !rules.includes(parseInt(item)))
+          state.disabledItems.push(...rules)
+        }
+        if (state.selectedItems.length < 2) {
+          state.step = 0
+        }
+      })
     }
   }
 })

@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { useAppDispatch } from "hooks/redux"
+import { useAppDispatch, useAppSelector } from "hooks/redux"
 import { setSelectedItem } from "states/menu"
 import { MenuItemGroup } from "types/menu"
 import RadioInput from "./RadioInput"
@@ -16,9 +16,19 @@ type RadioGroupProps = {
 
 const RadioGroup = ({ index, label, items, name, disabled, onChange }: RadioGroupProps) => {
   const dispatch = useAppDispatch()
+  const selectedItems = useAppSelector(state => state.menuSlice.selectedItems)
+  const disabledItems = useAppSelector(state => state.menuSlice.disabledItems)
 
   const fieldSetClasses = clsx([styles.radio_group, { [styles.radio_group__disabled]: disabled }])
   const labelClasses = clsx([styles.radio_group__label, { [styles.radio_group__disabled]: disabled }])
+
+  const itemSelected = (id: string) => {
+    return Boolean(selectedItems.find(item => item.toString() === id))
+  }
+
+  const itemDisabled = (id: string) => {
+    return Boolean(disabledItems.find(item => item.toString() === id))
+  }
 
   if (!items.length) return null
 
@@ -33,7 +43,8 @@ const RadioGroup = ({ index, label, items, name, disabled, onChange }: RadioGrou
             name={name}
             label={item.value}
             value={item.id}
-            disabled={disabled}
+            disabled={disabled || itemDisabled(item.id)}
+            checked={itemSelected(item.id)}
             onChange={() => dispatch(setSelectedItem({ group: index, value: item.id }))}
           />
         ))}
