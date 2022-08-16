@@ -2,6 +2,9 @@
   "name": "stationfive-radio-buttons",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.16.1"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
     "clsx": "^1.1.1",
